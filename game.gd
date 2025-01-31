@@ -8,6 +8,9 @@ const PORT =  3333
 #Exibir mensagem quando o servidor for criado e exibir mensagens sempre que
 #um usuário se conectar
 #Esconder menu de Multiplayer ao se conectar ou criar servidor com sucesso
+
+#Na função de join, identificar se o jogador conseguiu se conectar. Se não conseguir
+#exibir no log "Falha ao conectar ao servidor"
 func _on_botao_join_pressed() -> void:
 	peer.create_client(ADDRESS, PORT)
 	multiplayer.multiplayer_peer = peer
