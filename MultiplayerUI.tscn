@@ -1,0 +1,79 @@
+[gd_scene load_steps=3 format=3 uid="uid://bg73woycv1ftv"]
+
+[sub_resource type="Theme" id="Theme_4l2hr"]
+Button/font_sizes/font_size = 32
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/font_sizes/font_size = 32
+
+[sub_resource type="SystemFont" id="SystemFont_4d76m"]
+
+[node name="MultiplayerUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -160.0
+offset_right = 128.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_4l2hr")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -132.0
+offset_right = 64.0
+offset_bottom = -87.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("SystemFont_4d76m")
+text = "Lobby"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BotaoJoin" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -52.0
+offset_right = 56.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Join"
+
+[node name="BotaoHost" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = 36.0
+offset_right = 56.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Host"
