@@ -12,15 +12,20 @@ const PORT =  3333
 #Na função de join, identificar se o jogador conseguiu se conectar. Se não conseguir
 #exibir no log "Falha ao conectar ao servidor"
 func _on_botao_join_pressed() -> void:
-	peer.create_client(ADDRESS, PORT)
-	multiplayer.multiplayer_peer = peer
+	var resultado = peer.create_client(ADDRESS, PORT)
+	
+	if resultado == OK:
+		multiplayer.multiplayer_peer = peer
+		log.text += "Conectado ao servidor! \n"
+	else:
+		log.text += "Não foi possivel se conectar! Erro: "+str(resultado)+"\n"
 
 
 func _on_botao_host_pressed() -> void:
 	var resultado = peer.create_server(PORT)
-	multiplayer.multiplayer_peer = peer
 	
 	if resultado == OK:
+		multiplayer.multiplayer_peer = peer
 		multiplayer.peer_connected.connect(player_conectado)
 		log.text += "Servidor criado na porta "+str(PORT)+"!\n"
 	else:
@@ -28,13 +33,13 @@ func _on_botao_host_pressed() -> void:
 		
 #Na função player_conectado realizar uma chamada rpc, para a função atualizar_log
 func player_conectado(id_jogador):
-	log.text += "Cliente "+str(id_jogador)+"conectado ao servidor!\n"
+	log.text += "Cliente "+str(id_jogador)+" conectado ao servidor!\n"
 	#Chamada rpc aqui
+	rpc("atualizar_log", log.text)
 	
 
 
 #Criar a função atualizar_log em que recebe o log.text do servidor e modifica o próprio log
-@rpc("any_peer", "call_local","reliable")
-func atualizar_log(texto):
-	pass
-	
+@rpc("any_peer", "call_local", "reliable")
+func atualizar_log(novo_log):
+	log.text = novo_log
