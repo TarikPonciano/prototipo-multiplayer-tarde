@@ -84,5 +84,13 @@ grow_vertical = 2
 text = "Host"
 metadata/_edit_use_anchors_ = true
 
+[node name="Log" type="TextEdit" parent="."]
+offset_top = 496.0
+offset_right = 448.0
+offset_bottom = 640.0
+theme_override_font_sizes/font_size = 16
+editable = false
+wrap_mode = 1
+
 [connection signal="pressed" from="MultiplayerUI/Panel/BotaoJoin" to="." method="_on_botao_join_pressed"]
 [connection signal="pressed" from="MultiplayerUI/Panel/BotaoHost" to="." method="_on_botao_host_pressed"]
