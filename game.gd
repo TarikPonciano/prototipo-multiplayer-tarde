@@ -50,7 +50,7 @@ func player_conectado(id_jogador):
 	
 func adicionar_jogador(id_jogador):
 	var novo_jogador = jogador_scene.instantiate()
-	novo_jogador.name = str(id_jogador)
+	novo_jogador.name = str(id_jogador) 
 	add_child(novo_jogador)
 	
 #Criar a função atualizar_log em que recebe o log.text do servidor e modifica o próprio log

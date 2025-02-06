@@ -94,5 +94,9 @@ theme_override_font_sizes/font_size = 16
 editable = false
 wrap_mode = 1
 
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://player.tscn")
+spawn_path = NodePath("..")
+
 [connection signal="pressed" from="MultiplayerUI/Panel/BotaoJoin" to="." method="_on_botao_join_pressed"]
 [connection signal="pressed" from="MultiplayerUI/Panel/BotaoHost" to="." method="_on_botao_host_pressed"]
