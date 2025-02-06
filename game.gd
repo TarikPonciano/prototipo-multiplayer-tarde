@@ -6,7 +6,6 @@ const PORT =  3333
 @onready var log = $Log
 @onready var ui = $MultiplayerUI
 
-
 #Exibir mensagem quando o servidor for criado e exibir mensagens sempre que
 #um usuário se conectar
 #Esconder menu de Multiplayer ao se conectar ou criar servidor com sucesso
