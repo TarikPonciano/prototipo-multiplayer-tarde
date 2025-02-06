@@ -5,7 +5,6 @@ const ADDRESS = "127.0.0.1"
 const PORT =  3333
 @onready var log = $Log
 @onready var ui = $MultiplayerUI
-@export var playerScene : PackedScene
 
 #Exibir mensagem quando o servidor for criado e exibir mensagens sempre que
 #um usuário se conectar
@@ -33,22 +32,18 @@ func _on_botao_host_pressed() -> void:
 		log.text += "Servidor criado na porta "+str(PORT)+"!\n"
 		ui.visible = false
 		#criar personagem
-		adicionar_jogador(multiplayer.get_unique_id())
 	
 	else:
 		log.text += "Erro ao criar servidor! Código do erro: "+str(resultado) +"\n"
 		
 	
 #Na função player_conectado realizar uma chamada rpc, para a função atualizar_log
+#Deve rodar o adicionar_jogador
+#Colocar um label no player para exibir o seu número de id
 func player_conectado(id_jogador):
 	log.text += "Cliente "+str(id_jogador)+" conectado ao servidor!\n"
 	#Chamada rpc aqui
 	rpc("atualizar_log", log.text)
-	
-func adicionar_jogador(id_jogador):
-	var novo_player = playerScene.instantiate()
-	novo_player.name = str(id_jogador)
-	add_child(novo_player)
 	
 	
 #Criar a função atualizar_log em que recebe o log.text do servidor e modifica o próprio log
