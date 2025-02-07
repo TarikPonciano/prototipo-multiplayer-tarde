@@ -3,10 +3,11 @@ extends Node2D
 var peer = ENetMultiplayerPeer.new()
 const ADDRESS = "127.0.0.1"
 const PORT =  3333
-@onready var log = $Log
+@onready var log = $CanvasLayer/Log
 @onready var ui = $MultiplayerUI
 @onready var campoNick = $MultiplayerUI/Panel/CampoNick
 @export var jogador_scene : PackedScene
+var jogadores_nome = {}
 
 #Exibir mensagem quando o servidor for criado e exibir mensagens sempre que
 #um usuário se conectar
@@ -60,13 +61,18 @@ func adicionar_jogador(id_jogador, nick_jogador):
 		novo_jogador.name = str(id_jogador) 
 		novo_jogador.nome_jogador = nick_jogador
 		add_child(novo_jogador)
-		rpc_id(id_jogador,"atualizar_nome", id_jogador, nick_jogador)
+		jogadores_nome[id_jogador] = nick_jogador
+		rpc_id(id_jogador,"atualizar_nomes", jogadores_nome)
+		
 		
 @rpc("any_peer", "call_local", "reliable")
-func atualizar_nome(id_jogador,nick_jogador):
-	var novo_jogador = get_node_or_null(str(id_jogador))
-	if novo_jogador:
-		novo_jogador.nome_jogador = nick_jogador
+func atualizar_nomes(jogadores):
+	for id in jogadores:
+		var novo_jogador = get_node_or_null(str(id))
+		if novo_jogador:
+			novo_jogador.mudar_nome(jogadores[id])
+			
+	print(jogadores)
 	
 #Criar a função atualizar_log em que recebe o log.text do servidor e modifica o próprio log
 @rpc("any_peer", "call_local", "reliable")

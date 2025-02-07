@@ -10,6 +10,13 @@ func _enter_tree() -> void:
 	
 func _ready() -> void:
 	rotulo_nome.text = nome_jogador
+	if (is_multiplayer_authority()):
+		var camera = Camera2D.new()
+		add_child(camera)
+	
+func mudar_nome(novo_nome):
+	nome_jogador = novo_nome
+	rotulo_nome.text = novo_nome
 
 func _physics_process(delta: float) -> void:
 	if (is_multiplayer_authority()):
