@@ -2,13 +2,14 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 @onready var rotulo_nome = $NomeJogador
+var nome_jogador = "Anônimo"
 
 func _enter_tree() -> void:
 
 	set_multiplayer_authority(name.to_int())
 	
 func _ready() -> void:
-	rotulo_nome.text = "Jogador " + self.name
+	rotulo_nome.text = nome_jogador
 
 func _physics_process(delta: float) -> void:
 	if (is_multiplayer_authority()):
